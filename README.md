@@ -20,10 +20,10 @@ module.exports = function (config) {
             './src/**/*.spec.js'
         ],
         plugins: [
-            require('karma-jasmine'),
-            require('karma-webpack'),
-            require('karma-phantomjs-launcher'),
-            require('karma-vsts-reporter')
+           'karma-jasmine',
+           'karma-webpack',
+           'karma-phantomjs-launcher',
+           '@dhigroup/karma-vsts-reporter'
         ],
         preprocessors: {
             './src/*.spec.js': ['webpack'],
