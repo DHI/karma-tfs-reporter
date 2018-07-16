@@ -3,13 +3,13 @@ var fs = require('fs');
 var mkpath = require('mkpath');
 var trx = require('./trx');
 
-var TfsReporter = function(baseReporterDecorator, config, formatError) {
+var VstsReporter = function(baseReporterDecorator, config, formatError) {
     baseReporterDecorator(this);
 
     var testResults;
     var messages = [];
-    var outputDir = config.tfsReporter && config.tfsReporter.outputDir ? config.tfsReporter.outputDir : 'testresults';
-    var outputFile = config.tfsReporter && config.tfsReporter.outputFile ? config.tfsReporter.outputFile : 'testresults_${date}.xml';
+    var outputDir = config.vstsReporter && config.vstsReporter.outputDir ? config.vstsReporter.outputDir : 'testresults';
+    var outputFile = config.vstsReporter && config.vstsReporter.outputFile ? config.vstsReporter.outputFile : 'testresults_${date}.xml';
 
     this.onRunStart = function (browsers) {
         testResults = {
@@ -56,8 +56,8 @@ var TfsReporter = function(baseReporterDecorator, config, formatError) {
 
 }
 
-TfsReporter.$inject = ['baseReporterDecorator', 'config', 'formatError'];
+VstsReporter.$inject = ['baseReporterDecorator', 'config', 'formatError'];
 
 module.exports = {
-    'reporter:tfs': ['type', TfsReporter]
+    'reporter:vsts': ['type', VstsReporter]
 };

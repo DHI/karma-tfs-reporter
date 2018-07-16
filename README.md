@@ -1,15 +1,15 @@
-# karma-tfs-reporter
-A Karma plugin for reporting test results to TFS.
+# karma-vsts-reporter
+A Karma plugin for reporting test results to vsts.
 
 ## usage
 
-Add the karma-tfs-reporter to your project:
+Add the karma-vsts-reporter to your project:
 
 ```
-npm install --save karma-tfs-reporter
+npm install --save karma-vsts-reporter
 ```
 
-Example karma.conf.js (view the [sample project](https://github.com/sgbj/karma-tfs-reporter/tree/sample)):
+Example karma.conf.js (view the [sample project](https://github.com/DHI/karma-vsts-reporter/tree/sample)):
 
 ```js
 module.exports = function (config) {
@@ -23,7 +23,7 @@ module.exports = function (config) {
             require('karma-jasmine'),
             require('karma-webpack'),
             require('karma-phantomjs-launcher'),
-            require('karma-tfs-reporter')
+            require('karma-vsts-reporter')
         ],
         preprocessors: {
             './src/*.spec.js': ['webpack'],
@@ -35,9 +35,9 @@ module.exports = function (config) {
             stats: 'errors-only'
         },
         browsers: ['PhantomJS'],
-        reporters: ['progress', 'tfs'],
+        reporters: ['progress', 'vsts'],
         // Default settings (optional)
-        tfsReporter: {
+        vstsReporter: {
             outputDir: 'testresults',
             outputFile: 'testresults_${date}.xml'
         }
@@ -45,7 +45,7 @@ module.exports = function (config) {
 }
 ```
 
-Setup the build steps in TFS:
+Setup the build steps in vsts:
 
 ![build-steps](https://cloud.githubusercontent.com/assets/5178445/20040961/d9b691ee-a426-11e6-9be2-266533274269.png)
 
