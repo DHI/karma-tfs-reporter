@@ -1,5 +1,5 @@
 {
-  "name": "karma-vsts-reporter",
+  "name": "@dhi/karma-vsts-reporter",
   "version": "1.1.0",
   "description": "A Karma plugin for reporting test results to VSTS",
   "main": "index.js",
