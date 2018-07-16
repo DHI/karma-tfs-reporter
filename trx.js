@@ -1,7 +1,7 @@
 var uuid = require('node-uuid');
 var os = require('os');
 var xmlbuilder = require('xmlbuilder');
-var dateFormat = require('dateformat');
+var moment = require('moment');
 
 function pad(n, width, z) {
   z = z || '0';
@@ -10,15 +10,14 @@ function pad(n, width, z) {
 }
 
 function toISOString (time) {
-    var date = new Date(time);
-    return dateFormat(date, "isoDateTime");
+  return moment().toISOString();
 };
 
 function duration (start, finish) {
   var diff = finish.getTime() - start.getTime();
   return pad((diff / 1000 / 60 / 60) % 100, 2)
-        + ':' + pad((diff / 1000 / 60) % 60, 2) 
-        + ':' + pad((diff / 1000) % 60, 2) 
+        + ':' + pad((diff / 1000 / 60) % 60, 2)
+        + ':' + pad((diff / 1000) % 60, 2)
         + '.' + pad(diff % 1000, 3) + '0000';
 };
 
@@ -92,7 +91,7 @@ module.exports = function (testResults) {
     });
 
     var testEntryArray = specs.map(spec => {
-      return { 
+      return {
         '@testId': spec.testId,
         '@executionId': spec.executionId,
         '@testListId': suites[spec.result.suite]
