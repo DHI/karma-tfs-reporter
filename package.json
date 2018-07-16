@@ -1,12 +1,9 @@
 {
-  "name": "karma-tfs-reporter",
-  "version": "1.0.1",
-  "description": "A Karma plugin for reporting test results to TFS",
+  "name": "karma-vsts-reporter",
+  "version": "1.1.0",
+  "description": "A Karma plugin for reporting test results to VSTS",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "homepage": "https://github.com/sgbj/karma-tfs-reporter",
+  "homepage": "https://github.com/sgbj/karma-vsts-reporter",
   "author": {
     "name": "sgbj",
     "email": "",
@@ -16,13 +13,13 @@
   "keywords": [
     "karma-plugin",
     "karma-reporter",
-    "karma-tfs-reporter",
-    "tfs"
+    "karma-vsts-reporter",
+    "vsts"
   ],
   "dependencies": {
-    "dateformat": "^2.0.0",
     "mkpath": "^1.0.0",
-    "node-uuid": "^1.4.7",
+    "moment": "^2.22.2",
+    "node-uuid": "^1.4.8",
     "xmlbuilder": "^9.0.0"
   }
 }
