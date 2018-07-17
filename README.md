@@ -1,5 +1,6 @@
 # Karma VSTS Reporter
 [![npm version](https://badge.fury.io/js/%40dhigroup%2Fkarma-vsts-reporter.svg)](https://badge.fury.io/js/%40dhigroup%2Fkarma-vsts-reporter)
+
 A Karma plugin for reporting test results to Visual Studio Team Services (VSTS).
 
 ## Getting started
