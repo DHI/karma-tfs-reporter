@@ -6,7 +6,7 @@ A Karma plugin for reporting test results to vsts.
 Add the karma-vsts-reporter to your project:
 
 ```
-npm install --save karma-vsts-reporter
+npm i karma-vsts-reporter -D
 ```
 
 Example karma.conf.js (view the [sample project](https://github.com/DHI/karma-vsts-reporter/tree/sample)):
@@ -34,8 +34,9 @@ module.exports = function (config) {
         webpackMiddleware: {
             stats: 'errors-only'
         },
-        browsers: ['PhantomJS'],
+        browsers: ['ChromeHeadless'],
         reporters: ['progress', 'vsts'],
+        
         // Default settings (optional)
         vstsReporter: {
             outputDir: 'testresults',
@@ -47,8 +48,7 @@ module.exports = function (config) {
 
 Setup the build steps in vsts:
 
-![build-steps](https://cloud.githubusercontent.com/assets/5178445/20040961/d9b691ee-a426-11e6-9be2-266533274269.png)
+![build setup](https://user-images.githubusercontent.com/1515742/42814566-e646f5f4-89c4-11e8-9495-4181d07949e1.PNG)
 
-Git gud code br0.
-
-![test-results](https://cloud.githubusercontent.com/assets/5178445/20040962/daf0cc3c-a426-11e6-8467-82e0699b7fd1.png)
+Run your build, then you should see:
+![build summary](https://user-images.githubusercontent.com/1515742/42814697-563dc7f2-89c5-11e8-8b4c-eb59ea4c9f0a.PNG)
