@@ -12,7 +12,9 @@
     "vsts"
   ],
   "scripts": {
-    "publish": "prettier --write"
+    "format": "prettier --write ./*.js",
+    "test": "ava test.js",
+    "test:watch": "ava test.js --watch"
   },
   "dependencies": {
     "mkpath": "^1.0.0",
