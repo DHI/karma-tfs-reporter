@@ -1,13 +1,13 @@
 const path = require("path");
 const fs = require("fs");
 const mkpath = require("mkpath");
-const trx = require("./trx");
+const trx = require("./trx").trx;
 
 const VstsReporter = function(baseReporterDecorator, config, formatError) {
   baseReporterDecorator(this);
 
-  const testResults;
-  const messages = [];
+  let testResults;
+  let messages = [];
   const outputDir =
     config.vstsReporter && config.vstsReporter.outputDir
       ? config.vstsReporter.outputDir

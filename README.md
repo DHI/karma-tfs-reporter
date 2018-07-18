@@ -37,7 +37,7 @@ module.exports = function (config) {
     },
     browsers: ['ChromeHeadless'],
     reporters: ['progress', 'vsts'],
-    
+
     // Default settings (optional)
     vstsReporter: {
       outputDir: 'testresults',
@@ -53,3 +53,17 @@ Setup the build steps in VSTS:
 
 Run your build, then you should see:
 ![build summary](https://user-images.githubusercontent.com/1515742/42814697-563dc7f2-89c5-11e8-8b4c-eb59ea4c9f0a.PNG)
+
+
+## Contributing
+Contributions are welcome.
+
+Here's a small guide on how to do it:
+- create a branch from master
+- (do changes)
+- run `npm test` to make sure tests still pass
+- run `npm format` to format your code
+- commit your changes on that branch
+- make a pull request
+
+We'll then review it and accept if all looks good :)

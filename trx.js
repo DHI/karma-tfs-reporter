@@ -1,4 +1,4 @@
-const uuid = require('uuid/v4');
+const uuid = require("uuid/v4");
 const os = require("os");
 const xmlbuilder = require("xmlbuilder");
 const moment = require("moment");
@@ -7,11 +7,11 @@ const pad = (n, width, z) => {
   z = z || "0";
   n = Math.abs(Math.floor(n)) + "";
   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-}
+};
 
-const toISOString = (time) => {
-  return moment().toISOString();
-}
+const toISOString = time => {
+  return moment(time).toISOString();
+};
 
 const duration = (start, finish) => {
   const diff = finish.getTime() - start.getTime();
@@ -25,18 +25,24 @@ const duration = (start, finish) => {
     pad(diff % 1000, 3) +
     "0000"
   );
-}
+};
 
-const escape = (str) => {
+const escape = str => {
   return str
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&apos;");
-}
+};
 
-const trx = (testResults) => {
+const trx = (
+  testResults,
+  executionId = uuid(),
+  testId = uuid(),
+  suiteId = uuid(),
+  testRunId = uuid()
+) => {
   const start = Math.min.apply(
     null,
     testResults.specs.map(spec => spec.start.getTime())
@@ -51,14 +57,14 @@ const trx = (testResults) => {
     spec.description = escape(spec.description);
     return {
       name: `${spec.suite} ${spec.description}`,
-      executionId: uuid(),
-      testId: uuid(),
+      executionId,
+      testId,
       result: spec
     };
   });
 
   const suites = {};
-  testResults.specs.forEach(spec => (suites[spec.suite] = uuid()));
+  testResults.specs.forEach(spec => (suites[spec.suite] = suiteId));
 
   const fullOutcome = testResults.specs.some(spec => spec.outcome == "Failed")
     ? "Failed"
@@ -131,7 +137,7 @@ const trx = (testResults) => {
   return xmlbuilder
     .create({
       TestRun: {
-        "@id": uuid(),
+        "@id": testRunId,
         "@name": testResults.name,
         "@xmlns": "http://microsoft.com/schemas/VisualStudio/TeamTest/2010",
         Times: {
@@ -169,11 +175,10 @@ const trx = (testResults) => {
     .end({ pretty: true });
 };
 
-
 module.exports = {
   pad,
   toISOString,
-  dufration,
+  duration,
   escape,
   trx
-}
+};
