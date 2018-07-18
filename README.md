@@ -23,7 +23,7 @@ module.exports = function (config) {
     plugins: [
       'karma-jasmine',
       'karma-webpack',
-      'karma-phantomjs-launcher',
+      'karma-chrome-launcher',
       '@dhigroup/karma-vsts-reporter'
     ],
     preprocessors: {
