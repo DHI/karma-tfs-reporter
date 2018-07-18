@@ -62,7 +62,7 @@ Here's a small guide on how to do it:
 - create a branch from master
 - (do changes)
 - run `npm test` to make sure tests still pass
-- run `npm format` to format your code
+- run `npm run format` to format your code
 - commit your changes on that branch
 - make a pull request
 
