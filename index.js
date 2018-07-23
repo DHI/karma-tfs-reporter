@@ -11,11 +11,11 @@ const VstsReporter = function(baseReporterDecorator, config, formatError) {
   const outputDir =
     config.vstsReporter && config.vstsReporter.outputDir
       ? config.vstsReporter.outputDir
-      : "testresults";
+      : "coverage-vsts";
   const outputFile =
     config.vstsReporter && config.vstsReporter.outputFile
       ? config.vstsReporter.outputFile
-      : "testresults_${date}.xml";
+      : "coverage-${date}.xml";
 
   this.onRunStart = function(browsers) {
     testResults = {

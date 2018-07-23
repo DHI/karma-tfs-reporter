@@ -40,8 +40,8 @@ module.exports = function (config) {
 
     // Default settings (optional)
     vstsReporter: {
-      outputDir: 'testresults',
-      outputFile: 'testresults_${date}.xml'
+      outputDir: 'coverage-vsts',
+      outputFile: 'coverage-${date}.xml'
     }
   })
 }
