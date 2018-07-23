@@ -36,13 +36,7 @@ const escape = str => {
     .replace(/'/g, "&apos;");
 };
 
-const trx = (
-  testResults,
-  executionId = uuid(),
-  testId = uuid(),
-  suiteId = uuid(),
-  testRunId = uuid()
-) => {
+const trx = testResults => {
   const start = Math.min.apply(
     null,
     testResults.specs.map(spec => spec.start.getTime())
@@ -57,14 +51,14 @@ const trx = (
     spec.description = escape(spec.description);
     return {
       name: `${spec.suite} ${spec.description}`,
-      executionId,
-      testId,
+      executionId: uuid(),
+      testId: uuid(),
       result: spec
     };
   });
 
   const suites = {};
-  testResults.specs.forEach(spec => (suites[spec.suite] = suiteId));
+  testResults.specs.forEach(spec => (suites[spec.suite] = uuid()));
 
   const fullOutcome = testResults.specs.some(spec => spec.outcome == "Failed")
     ? "Failed"
@@ -137,7 +131,7 @@ const trx = (
   return xmlbuilder
     .create({
       TestRun: {
-        "@id": testRunId,
+        "@id": uuid(),
         "@name": testResults.name,
         "@xmlns": "http://microsoft.com/schemas/VisualStudio/TeamTest/2010",
         Times: {

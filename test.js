@@ -52,58 +52,27 @@ test("escape", t => {
   t.is(escape(`'`), "&apos;");
 });
 
-// TODO: properly test trx
-test("trx", t => {
+/**
+ * TRX tests below.
+ * TODO: properly test this.
+ */
+const testResults = {
+  name: "Test results name",
+  specs: [
+    {
+      start: new Date("2018-07-16T16:05:16+0200"),
+      finish: new Date("2018-07-16T16:05:20+0200"),
+      suite: "suite",
+      description: "description",
+      outcome: "Failed",
+      message: "message",
+      stackTrace: "stack"
+    }
+  ]
+};
+
+test("trx multiple runs should yield new ids", t => {
   t.plan(1);
 
-  const testResults = {
-    name: "Test results name",
-    specs: [
-      {
-        start: new Date("2018-07-16T16:05:16+0200"),
-        finish: new Date("2018-07-16T16:05:20+0200"),
-        suite: "suite",
-        description: "description",
-        outcome: "Failed",
-        message: "message",
-        stackTrace: "stack"
-      }
-    ]
-  };
-
-  const expect = `<?xml version="1.0" encoding="UTF-8"?>
-<TestRun id="testRunId" name="Test results name" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
-  <Times creation="2018-07-16T14:05:16.000Z" start="2018-07-16T14:05:16.000Z" finish="2018-07-16T14:05:20.000Z"/>
-  <TestLists>
-    <TestList name="suite" id="suiteId"/>
-  </TestLists>
-  <TestDefinitions>
-    <UnitTest name="suite description" id="testId">
-      <Execution id="executionId"/>
-      <TestMethod codeBase="Test results name" className="suite" name="suite description"/>
-    </UnitTest>
-  </TestDefinitions>
-  <TestEntries>
-    <TestEntry testId="testId" executionId="executionId" testListId="suiteId"/>
-  </TestEntries>
-  <Results>
-    <UnitTestResult executionId="executionId" testId="testId" testName="suite description" computerName="DK83720-PC1" duration="00:00:04.0000000" startTime="2018-07-16T14:05:16.000Z" endTime="2018-07-16T14:05:20.000Z" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="suiteId">
-      <ErrorInfo>
-        <Message>message</Message>
-        <StackTrace>stack</StackTrace>
-      </ErrorInfo>
-    </UnitTestResult>
-  </Results>
-  <ResultSummary outcome="Failed">
-    <Counters total="1" executed="1" passed="0" failed="1"/>
-    <Output>
-      <StdOut/>
-    </Output>
-  </ResultSummary>
-</TestRun>`;
-
-  t.is(
-    trx(testResults, "executionId", "testId", "suiteId", "testRunId"),
-    expect
-  );
+  t.not(trx(testResults), trx(testResults));
 });
